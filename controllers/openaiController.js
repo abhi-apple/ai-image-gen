@@ -12,10 +12,11 @@ const generateImage = async (req, res) => {
     size === "small" ? "256x256" : size === "medium" ? "512x512" : "1024x1024";
   try {
     const response = await openai.createImage({
-      prompt: "Life on mars",
+      prompt,
       n: 1,
       size: imageSize,
     });
+    console.log(response);
     const imageUrl = response.data.data[0].url;
     res.status(200).json({
       success: true,
